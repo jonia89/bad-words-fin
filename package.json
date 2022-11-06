@@ -1,0 +1,28 @@
+{
+  "name": "@jonia89/bad-words-fin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "better-assert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonia89/bad-words-fin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonia89/bad-words-fin/issues"
+  },
+  "homepage": "https://github.com/jonia89/bad-words-fin#readme",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "bad-words": "^3.0.4",
+    "better-assert": "^1.0.2"
+  },
+  "devDependencies": {
+    "husky": "^4.3.8"
+  }
+}
