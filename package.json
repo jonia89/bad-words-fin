@@ -2,7 +2,7 @@
   "name": "@jonia89/bad-words-fin",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "badWordsFin.js",
   "scripts": {
     "test": "better-assert"
   },
