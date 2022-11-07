@@ -20,7 +20,7 @@ class Filter {
       exclude: options.exclude || [],
       splitRegex: options.splitRegex || /\b/,
       placeHolder: options.placeHolder || '*',
-      regex: options.regex || /^[a-zA-ZäöåÄÖÅ]|\$|\@]|\^/g,
+      regex: options.regex || /^[a-zA-ZäöåÄÖÅ]+$/g,
       replaceRegex: options.replaceRegex || /\w/g
     })
   }
