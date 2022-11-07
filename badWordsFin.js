@@ -1,4 +1,5 @@
 const localList = require("./lang.json").words;
+const baseList = require('badwords-list').array;
 
 class Filter {
   /**
@@ -16,7 +17,7 @@ class Filter {
     Object.assign(this, {
       list:
         (options.emptyList && []) ||
-        Array.prototype.concat.apply(localList, [options.list || []]),
+        Array.prototype.concat.apply(localList, [baseList, options.list || []]),
       exclude: options.exclude || [],
       splitRegex: options.splitRegex || /\b/,
       placeHolder: options.placeHolder || "*",

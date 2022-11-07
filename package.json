@@ -1,28 +1,44 @@
 {
   "name": "@jonia89/bad-words-fin",
-  "version": "2.0.0",
-  "description": "",
-  "main": "badWordsFin.js",
+  "version": "3.0.0",
+  "description": "A javascript filter for bad words",
+  "main": "./badWordsFin.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "test": "better-assert"
+    "test": "./node_modules/.bin/mocha -R spec",
+    "docs": "./node_modules/.bin/documentation readme --section API ./lib/badwords.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jonia89/bad-words-fin.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "curse",
+    "words",
+    "profanity",
+    "filter",
+    "finnish",
+    "swedish"
+  ],
+
+  "author": "Joni",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "bugs": {
     "url": "https://github.com/jonia89/bad-words-fin/issues"
   },
   "homepage": "https://github.com/jonia89/bad-words-fin#readme",
   "dependencies": {
-    "assert": "^2.0.0",
-    "bad-words": "^3.0.4",
-    "better-assert": "^1.0.2"
+    "badwords-list": "^1.0.0",
+    "bad-words": "^3.0.4"
   },
   "devDependencies": {
-    "husky": "^4.3.8"
+    "better-assert": "1.0.0",
+    "documentation": "^5.3.3",
+    "mocha": "^5.2.0"
   }
 }
