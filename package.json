@@ -2,13 +2,13 @@
   "name": "@jonia89/bad-words-fin",
   "version": "3.0.0",
   "description": "A javascript filter for bad words",
-  "main": "./badWordsFin.js",
+  "main": "./badWordsFin",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha -R spec",
-    "docs": "./node_modules/.bin/documentation readme --section API ./lib/badwords.js"
+    "docs": "./node_modules/.bin/documentation readme --section API ./badwords.js"
   },
   "repository": {
     "type": "git",
