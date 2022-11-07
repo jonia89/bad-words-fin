@@ -1,7 +1,8 @@
-const localList = require("./lang.json").words;
+const localList = require('./lang.json').words;
 const baseList = require('badwords-list').array;
 
 class Filter {
+
   /**
    * Filter constructor.
    * @constructor
@@ -15,15 +16,13 @@ class Filter {
    */
   constructor(options = {}) {
     Object.assign(this, {
-      list:
-        (options.emptyList && []) ||
-        Array.prototype.concat.apply(localList, [baseList, options.list || []]),
+      list: options.emptyList && [] || Array.prototype.concat.apply(localList, [baseList, options.list || []]),
       exclude: options.exclude || [],
       splitRegex: options.splitRegex || /\b/,
-      placeHolder: options.placeHolder || "*",
-      regex: options.regex || /^[a-zA-ZäöåÄÖÅ]+$/g,
-      replaceRegex: options.replaceRegex || /^[a-zA-ZäöåÄÖÅ]+$/g,
-    });
+      placeHolder: options.placeHolder || '*',
+      regex: options.regex || /^[a-zA-ZäöåÄÖÅ]|\$|\@]|\^/g,
+      replaceRegex: options.replaceRegex || /\w/g
+    })
   }
 
   /**
@@ -31,17 +30,12 @@ class Filter {
    * @param {string} string - String to evaluate for profanity.
    */
   isProfane(string) {
-    return (
-      this.list.filter((word) => {
-        const wordExp = new RegExp(
-          `\\b${word.replace(/(\W)/g, "\\$1")}\\b`,
-          "gi"
-        );
-        return (
-          !this.exclude.includes(word.toLowerCase()) && wordExp.test(string)
-        );
-      }).length > 0 || false
-    );
+    return this.list
+      .filter((word) => {
+        const wordExp = new RegExp(`\\b${word.replace(/(\W)/g, '\\$1')}\\b`, 'gi');
+        return !this.exclude.includes(word.toLowerCase()) && wordExp.test(string);
+      })
+      .length > 0 || false;
   }
 
   /**
@@ -50,7 +44,7 @@ class Filter {
    */
   replaceWord(string) {
     return string
-      .replace(this.regex, "")
+      .replace(this.regex, '')
       .replace(this.replaceRegex, this.placeHolder);
   }
 
@@ -59,12 +53,9 @@ class Filter {
    * @param {string} string - Sentence to filter.
    */
   clean(string) {
-    return string
-      .split(this.splitRegex)
-      .map((word) => {
-        return this.isProfane(word) ? this.replaceWord(word) : word;
-      })
-      .join(this.splitRegex.exec(string)[0]);
+    return string.split(this.splitRegex).map((word) => {
+      return this.isProfane(word) ? this.replaceWord(word) : word;
+    }).join(this.splitRegex.exec(string)[0]);
   }
 
   /**
@@ -77,7 +68,7 @@ class Filter {
     this.list.push(...words);
 
     words
-      .map((word) => word.toLowerCase())
+      .map(word => word.toLowerCase())
       .forEach((word) => {
         if (this.exclude.includes(word)) {
           this.exclude.splice(this.exclude.indexOf(word), 1);
@@ -90,10 +81,8 @@ class Filter {
    * @param {...string} word - Word(s) to add to whitelist.
    */
   removeWords() {
-    this.exclude.push(
-      ...Array.from(arguments).map((word) => word.toLowerCase())
-    );
+    this.exclude.push(...Array.from(arguments).map(word => word.toLowerCase()));
   }
 }
 
-module.exports = { Filter };
+module.exports = Filter;
